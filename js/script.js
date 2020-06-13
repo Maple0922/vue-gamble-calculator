@@ -12,20 +12,13 @@ var main = new Vue({
   },
   methods: {
     select: function(e){
-      name = e.target.innerText;
-      for (var i = 0; i < this.users.length; i++) {
-        let item = this.users[i];
-        if (item.name == name) {
-          if (item.selected) {
-            item.selected = false;
-          }else{
-            item.selected = true;
-          }
-        }
-
-        console.log(this.users[i].name);
-        console.log(this.users[i].selected);
-      }
+      const listItemsNode = document.querySelectorAll('.select li');
+      const listItems = [].slice.call(listItemsNode);
+      const clickedItem = e.target;
+      const index = listItems.indexOf(clickedItem);
+      this.users[index].selected = !this.users[index].selected;
+      const isActivate = this.users[index].selected;
+      isActivate ? this.userCount++ : this.userCount--;
     }
   }
 });
