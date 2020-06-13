@@ -15,26 +15,16 @@
     <h1 class="header__title">賭金計算ツール</h1>
   </header>
   <main class="main">
-    <div class="main__card">
-      {{ message }}
-    </div>
-    <div class="main__card">
-      {{ message }}
-    </div>
-    <div class="main__card">
-      {{ message }}
-    </div>
-    <div class="main__card">
-      {{ message }}
-    </div>
-    <div class="main__card">
-      {{ message }}
-    </div>
-    <div class="main__card">
-      {{ message }}
-    </div>
-    <div class="main__card">
-      {{ message }}
+    <div class="main__container">
+      <div class="main__card select">
+        <h1>プレイするユーザーを選択してください</h1>
+        <ul>
+          <li v-for="(user, index) in users" v-on:click="select" v-bind:class="{ selected:user.selected }">
+            {{ user.name }}
+          </li>
+        </ul>
+        <button type="button" name="button">OK</button>
+      </div>
     </div>
   </main>
   <script type="text/javascript" src="js/script.js"></script>

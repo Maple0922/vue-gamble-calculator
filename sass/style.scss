@@ -12,36 +12,43 @@
   top: 0;
   z-index: 1;
   &__title {
-    font-size: 2.4rem;
+    font-size: 2.0rem;
     line-height: $height-header;
   }
 }
 
 .main {
-  margin-top: $height-header;
-  min-height: $height-main;
-  background: $super-light-gray;
-  padding: 30px 0;
-  font-size: 1.6rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  @include main;
   &__card {
-    @include mq("pc") {
-      width: calc((100% - 96px)/3);
+    @include card;
+  }
+  .select {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+      li {
+        text-align: center;
+        margin: 6px;
+        width: 100px;
+        height: 40px;
+        line-height: 38px;
+        background: $white;
+        border-radius: 8px;
+        color: $gray;
+        border: 1px solid $light-gray;
+        font-size: 1.4rem;
+        transition: .3s;
+        &.selected {
+          background: $color-theme;
+          color: $white;
+          border-color: $color-theme;
+        }
+      }
     }
-    @include mq("tab") {
-      width: calc((100% - 72px)/2);
+    button {
+      @include button;
     }
-    @include mq("sp") {
-      width: calc(100% - 48px);
-    }
-    height: 100px;
-    margin-bottom: 24px;
-    background: $white;
-    padding: 24px;
-    border-radius: 6px;
-    box-shadow: $basic-shadow;
-    position: relative;
   }
 }

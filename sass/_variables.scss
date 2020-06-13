@@ -9,6 +9,8 @@ $super-light-gray: #eee;
 $white: #fcfcfc;
 
 // variables
-$height-header: 80px;
+$height-header: 60px;
 $height-main: calc(100vh - #{$height-header});
 $basic-shadow: 0 0 8px 0 $light-gray;
+
+$color-theme: rgb(10, 55, 121);
