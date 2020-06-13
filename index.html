@@ -24,7 +24,7 @@
             {{ user.name }}
           </li>
         </ul>
-        <button type="button" name="button" :class="{ disabled:userCount==0 }">OK</button>
+        <button type="button" name="button" :class="{ disabled:userCount<2 }">OK</button>
       </div>
     </div>
   </main>
