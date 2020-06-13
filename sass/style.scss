@@ -8,7 +8,9 @@
   padding: 0 30px;
   background: $white;
   box-shadow: $basic-shadow;
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 1;
   &__title {
     font-size: 2.4rem;
     line-height: $height-header;
@@ -16,19 +18,30 @@
 }
 
 .main {
+  margin-top: $height-header;
   min-height: $height-main;
   background: $super-light-gray;
-  padding: 30px;
+  padding: 30px 0;
   font-size: 1.6rem;
-  &__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  &__card {
+    @include mq("pc") {
+      width: calc((100% - 96px)/3);
+    }
+    @include mq("tab") {
+      width: calc((100% - 72px)/2);
+    }
+    @include mq("sp") {
+      width: calc(100% - 48px);
+    }
+    height: 100px;
+    margin-bottom: 24px;
     background: $white;
-    padding: 16px 24px;
-    margin-bottom: 20px;
+    padding: 24px;
     border-radius: 6px;
     box-shadow: $basic-shadow;
+    position: relative;
   }
-}
-
-.footer {
-
 }
