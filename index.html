@@ -49,8 +49,22 @@
           </tr>
         </table>
       </div>
+      <div class="main__card new-game-maker" v-if="newGameMaker">
+        <h1>ゲームを選択してください</h1>
+        <ul class="maker-game">
+          <li v-for="game in games" v-on:click="gameSelect" :key="game.name" :class="{ selected:game.selected }">
+            {{ game.name }}
+          </li>
+        </ul>
+        <h1>レートを選択してください</h1>
+        <ul class="maker-rate">
+          <li v-on:click="rateDef -= rateStep">-</li>
+          <li><input type="text" name="" :value="rateDef"></li>
+          <li v-on:click="rateDef += rateStep">+</li>
+        </ul>
+      </div>
       <div class="main__card">
-        <button class="newgame" type="button" name="button" v-on:click="newgame">+</button>
+        <button class="newgame" type="button" name="button" v-on:click="newGame" :class="{ cancel:newGameMaker }">{{ newButtonText }}</button>
       </div>
       <div class="main__card">
         <button type="button" name="button" :class="{ clicked:pageCount!=1 }" v-on:click="next">精算</button>
