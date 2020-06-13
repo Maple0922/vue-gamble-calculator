@@ -23,6 +23,13 @@
     @include card;
   }
   .select {
+    h1 {
+      margin-bottom: 4px;
+    }
+    span {
+      text-align: right;
+      margin-bottom: 10px;
+    }
     ul {
       display: flex;
       flex-wrap: wrap;

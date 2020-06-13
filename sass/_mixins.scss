@@ -54,6 +54,9 @@ $breakpoints: (
     margin-bottom: 10px;
     font-size: 1.6rem;
   }
+  span {
+    @include caption;
+  }
 }
 
 // button
@@ -65,7 +68,15 @@ $breakpoints: (
   height: 40px;
   color: $white;
   background: rgb(191, 66, 120);
-  &--disabled {
+  transition: .3s;
+  &.disabled {
     background: rgb(193, 193, 193);
+    pointer-events: none;
   }
+}
+
+@mixin caption {
+  font-size: 1.0rem;
+  color: $gray;
+  display: block;
 }

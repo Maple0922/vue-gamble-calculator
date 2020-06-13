@@ -17,13 +17,14 @@
   <main class="main">
     <div class="main__container">
       <div class="main__card select">
-        <h1>プレイするユーザーを選択してください</h1>
+        <h1>プレイヤーを選択してください</h1>
+        <span>プレイヤー : {{ userCount }}人</span>
         <ul>
-          <li v-for="(user, index) in users" v-on:click="select" v-bind:class="{ selected:user.selected }">
+          <li v-for="(user in users" v-on:click="select" :key="user.name" :class="{ selected:user.selected }">
             {{ user.name }}
           </li>
         </ul>
-        <button type="button" name="button">OK</button>
+        <button type="button" name="button" :class="{ disabled:userCount==0 }">OK</button>
       </div>
     </div>
   </main>
