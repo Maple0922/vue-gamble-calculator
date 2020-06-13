@@ -15,19 +15,51 @@
     <h1 class="header__title">賭金計算ツール</h1>
   </header>
   <main class="main">
-    <div class="main__container">
-      <div class="main__card select">
+    <div class="main__container select" v-if="pageCount==0">
+      <div class="main__card">
         <h1>プレイヤーを選択してください</h1>
-        <span>プレイヤー : {{ userCount }}人</span>
+        <span class="caption">プレイヤー : {{ userCount }}人</span>
         <ul>
-          <li v-for="(user in users" v-on:click="select" :key="user.name" :class="{ selected:user.selected }">
+          <li v-for="user in users" v-on:click="select" :key="user.name" :class="{ selected:user.selected }">
             {{ user.name }}
           </li>
         </ul>
-        <button type="button" name="button" :class="{ disabled:userCount<2 }">OK</button>
+        <button type="button" name="button" :class="{ disabled:userCount<2, clicked:pageCount>0 }" v-on:click="next">OK</button>
       </div>
     </div>
-  </main>
-  <script type="text/javascript" src="js/script.js"></script>
+    <div class="main__container calc" v-if="pageCount==1">
+      <div class="main__card" v-for="(game,index) in games">
+        <div class="title">
+          <h1>Round {{ index+1 }}</h1>
+          <div>
+            <span class="game">{{ game.name }}</span>
+            <span class="rate">{{ game.rate }}</span>
+          </div>
+        </div>
+        <table class="table" border='1'>
+          <tr>
+            <th class="player">Player</th>
+            <th class="point">Point</th>
+            <th class="reward">Reward</th>
+          </tr>
+          <tr v-if="user.selected" v-for="user in users" :key="user.name">
+            <td>{{ user.name }}</td>
+            <td><input type="text" name="" value="0"></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <div class="main__card">
+        <button class="newgame" type="button" name="button" v-on:click="newgame">+</button>
+      </div>
+      <div class="main__card">
+        <button type="button" name="button" :class="{ clicked:pageCount!=1 }" v-on:click="next">精算</button>
+      </div>
+    </div>
+    <!-- <div class="back">
+    <p v-on:click="back" v-if="pageCount>0">←</p>
+  </div> -->
+</main>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

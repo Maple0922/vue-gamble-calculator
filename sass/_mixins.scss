@@ -47,14 +47,18 @@ $breakpoints: (
   height: auto;
   margin-bottom: 24px;
   background: $white;
-  padding: 24px;
+  padding: 16px;
   border-radius: 6px;
   box-shadow: $basic-shadow;
+  transition: .3s;
   h1 {
     margin-bottom: 10px;
     font-size: 1.6rem;
   }
-  span {
+  button {
+    @include button;
+  }
+  .caption {
     @include caption;
   }
 }
@@ -73,6 +77,9 @@ $breakpoints: (
   line-height: 1;
   &.disabled {
     background: rgb(193, 193, 193);
+    pointer-events: none;
+  }
+  &.clicked {
     pointer-events: none;
   }
 }
