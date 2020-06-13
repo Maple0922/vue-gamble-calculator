@@ -28,12 +28,13 @@
       </div>
     </div>
     <div class="main__container calc" v-if="pageCount==1">
-      <div class="main__card" v-for="(game,index) in games">
+      <div class="main__card calc-card" v-for="(game,index) in playedGames">
         <div class="title">
           <h1>Round {{ index+1 }}</h1>
           <div>
             <span class="game">{{ game.name }}</span>
             <span class="rate">{{ game.rate }}</span>
+            <span class="delete" v-on:click="deleteCalc">×</span>
           </div>
         </div>
         <table class="table" border='1'>
@@ -63,10 +64,11 @@
           <li v-on:click="rateDef += rateStep">+</li>
         </ul>
       </div>
-      <div class="main__card">
+      <div class="main__card newgame-button">
+        <button class="newgame-make" type="button" name="button" v-if="newGameMaker" v-on:click="newCalc">作成</button>
         <button class="newgame" type="button" name="button" v-on:click="newGame" :class="{ cancel:newGameMaker }">{{ newButtonText }}</button>
       </div>
-      <div class="main__card">
+      <div class="main__card payoff-button">
         <button type="button" name="button" :class="{ clicked:pageCount!=1 }" v-on:click="next">精算</button>
       </div>
     </div>

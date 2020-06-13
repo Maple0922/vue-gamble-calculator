@@ -13,12 +13,13 @@ var main = new Vue({
       { name: 'みんはや', rate: 300, selected: false},
     ],
     rateDef: 300,
+    gameDef: '大富豪',
     rateStep: 100,
     userCount: 0,
     pageCount: 0,
     newGameMaker: false,
     newButtonText: '+',
-    gameTypes: []
+    playedGames: []
   },
   methods: {
     select: function(e){
@@ -42,9 +43,17 @@ var main = new Vue({
       this.newGameMaker = !this.newGameMaker;
     },
     newCalc: function(){
-      this.games.push(
-        { name: '麻雀', rate: 30 }
+      this.playedGames.push(
+        { name: this.gameDef, rate: this.rateDef }
       );
+      this.newGameMaker = false;
+      this.newButtonText = '＋';
+    },
+    deleteCalc: function(e){
+      confirm('削除してもよろしいですか？');
+      const cardsNode = document.querySelectorAll('.calc-card');
+      const cards = [].slice.call(cardsNode);
+
     },
     gameSelect: function(e){
         const listItemsNode = document.querySelectorAll('.new-game-maker li');
@@ -55,6 +64,7 @@ var main = new Vue({
           this.games[i].selected = false;
         }
         this.games[index].selected = !this.games[index].selected;
+        this.gameDef = this.games[index].name;
         this.rateDef = this.games[index].rate;
         this.rateStep = this.rateDef/3;
       }

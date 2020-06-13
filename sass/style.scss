@@ -49,9 +49,9 @@
         font-size: 1.4rem;
         transition: .3s;
         &.selected {
-          background: $color-theme;
+          background: $color-blue;
           color: $white;
-          border-color: $color-theme;
+          border-color: $color-blue;
         }
       }
     }
@@ -71,15 +71,24 @@
       div {
         display: flex;
         .game,
-        .rate {
+        .rate,
+        .delete {
           font-size: 1.2rem;
           display: block;
-          background: $super-dark-gray;
-          padding: 4px 10px;
+          padding: 6px 10px;
           margin: 2px 4px 6px;
           border-radius: 4px;
           color: $white;
           align-self: flex-end;
+        }
+        .game {
+          background: $color-blue;
+        }
+        .rate {
+          background: $color-pink;
+        }
+        .delete {
+          background: $dark-gray;
         }
       }
     }
@@ -107,7 +116,7 @@
       }
     }
     .newgame {
-      background: $color-theme;
+      background: $color-blue;
       font-size: 1.6rem;
       &.cancel {
         background: $gray;
@@ -133,9 +142,9 @@
         font-size: 1.4rem;
         transition: .3s;
         &.selected {
-          background: $color-theme;
+          background: $color-blue;
           color: $white;
-          border-color: $color-theme;
+          border-color: $color-blue;
         }
       }
       &.maker-rate {
@@ -149,6 +158,12 @@
           text-align: center;
         }
       }
+    }
+  }
+  .newgame-button {
+    .newgame-make {
+      margin-bottom: 16px;
+      background: $color-blue;
     }
   }
 }
