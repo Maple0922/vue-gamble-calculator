@@ -127,7 +127,9 @@ a, input, button, textarea, select, option {
     height: 40px;
     color: #fcfcfc;
     background: #bf4278;
-    transition: .3s; }
+    transition: .3s;
+    font-size: 1.6rem;
+    line-height: 1; }
     .main .select button.disabled {
       background: #c1c1c1;
       pointer-events: none; }

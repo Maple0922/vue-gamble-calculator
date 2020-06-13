@@ -69,6 +69,8 @@ $breakpoints: (
   color: $white;
   background: rgb(191, 66, 120);
   transition: .3s;
+  font-size: 1.6rem;
+  line-height: 1;
   &.disabled {
     background: rgb(193, 193, 193);
     pointer-events: none;
