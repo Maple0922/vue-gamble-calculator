@@ -21,9 +21,7 @@ $breakpoints: (
 // main
 @mixin main {
   margin-top: $height-header;
-  height: $height-main;
-  background: $super-light-gray;
-  padding: 24px 0;
+  padding: 24px 0 40px;
   font-size: 1.6rem;
   &__container {
     display: flex;

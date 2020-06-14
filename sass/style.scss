@@ -276,14 +276,15 @@
       width: 80px;
       height: 36px;
       color: white;
-      line-height: 36px;
+      line-height: 35px;
       background: transparentize($black, 0.3);
       position: fixed;
-      bottom: 10px;
-      left: 10px;
+      bottom: 12px;
+      left: 12px;
       border-radius: 8px;
       text-align: center;
       transition: .5s;
+      box-shadow: 0 0 6px 0 $super-dark-gray;
     }
   }
 }

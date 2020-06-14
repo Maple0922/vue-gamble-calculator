@@ -4,7 +4,7 @@
 
 html {
   color: #444;
-  background: #fcfcfc;
+  background: #eee;
   font-size: 62.5%; }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
@@ -70,9 +70,7 @@ a, input, button, textarea, select, option {
 
 .main {
   margin-top: 72px;
-  height: calc(100vh - 72px);
-  background: #eee;
-  padding: 24px 0;
+  padding: 24px 0 40px;
   font-size: 1.6rem; }
   .main__container {
     display: flex;
@@ -307,11 +305,12 @@ a, input, button, textarea, select, option {
     width: 80px;
     height: 36px;
     color: white;
-    line-height: 36px;
+    line-height: 35px;
     background: rgba(17, 17, 17, 0.7);
     position: fixed;
-    bottom: 10px;
-    left: 10px;
+    bottom: 12px;
+    left: 12px;
     border-radius: 8px;
     text-align: center;
-    transition: .5s; }
+    transition: .5s;
+    box-shadow: 0 0 6px 0 #444; }
