@@ -10,7 +10,7 @@ var app = new Vue({
     games: [
       { name: '大富豪', rate: 300, selected: true},
       { name: '麻雀', rate: 30, selected: false},
-      { name: 'みんはや', rate: 300, selected: false},
+      { name: 'みんはや', rate: 30, selected: false},
     ],
     rateDef: 300,
     gameDef: '大富豪',
