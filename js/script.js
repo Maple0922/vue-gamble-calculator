@@ -1,11 +1,11 @@
-var main = new Vue({
-  el: '.main',
+var app = new Vue({
+  el: '#app',
   data: {
     users: [
-      { name: '黒田', selected: false, point: [], score: []},
-      { name: '佐藤', selected: false, point: [], score: []},
-      { name: '辰野', selected: false, point: [], score: []},
-      { name: '中島', selected: false, point: [], score: []}
+      { name: '黒田', selected: false, point: [], score: [], result: 0},
+      { name: '佐藤', selected: false, point: [], score: [], result: 0},
+      { name: '辰野', selected: false, point: [], score: [], result: 0},
+      { name: '中島', selected: false, point: [], score: [], result: 0}
     ],
     games: [
       { name: '大富豪', rate: 300, selected: true},
@@ -18,7 +18,7 @@ var main = new Vue({
     userCount: 0,
     pageCount: 0,
     newGameMaker: false,
-    newButtonText: '+',
+    newButtonText: '＋',
     playedGames: []
   },
   methods: {
@@ -31,17 +31,20 @@ var main = new Vue({
       const isActivate = this.users[index].selected;
       isActivate ? this.userCount++ : this.userCount--;
     },
+
     next: function(){
       this.pageCount++;
-      console.log(this.pageCount);
     },
+
     back: function(){
       this.pageCount--;
     },
+
     newGame: function(){
-      this.newButtonText = this.newGameMaker ? '＋' : '×';
+      this.newButtonText = this.newGameMaker ? '＋' : 'キャンセル';
       this.newGameMaker = !this.newGameMaker;
     },
+
     newCalc: function(){
       this.playedGames.push(
         {
@@ -51,7 +54,12 @@ var main = new Vue({
       );
       this.newGameMaker = false;
       this.newButtonText = '＋';
+      for (var i = 0; i < this.users.length; i++) {
+        this.users[i].score.push(0);
+      }
+      console.log(this.users[0].score);
     },
+
     deleteCalc: function(e){
       if(confirm('削除してもよろしいですか？')){
         const cardsNode = document.querySelectorAll('.calc-card');
@@ -65,14 +73,17 @@ var main = new Vue({
         }
       }
     },
+
     increaseRate: function(){
       this.rateDef += this.rateStep
     },
+
     decreaseRate: function(){
       if(this.rateStep < this.rateDef){
         this.rateDef -= this.rateStep
       }
     },
+
     gameSelect: function(e){
       const listItemsNode = document.querySelectorAll('.new-game-maker li');
       const listItems = [].slice.call(listItemsNode);
@@ -86,6 +97,7 @@ var main = new Vue({
       this.rateDef = this.games[index].rate;
       this.rateStep = this.rateDef/3;
     },
+
     calcScore: function(e){
       const cardsNode = document.querySelectorAll('.calc-card');
       const cards = [].slice.call(cardsNode);
@@ -94,20 +106,30 @@ var main = new Vue({
       let scoreSum = 0;
       for (var i = 0; i < this.users.length; i++) {
         if (this.users[i].selected) {
-          scoreSum += Number(this.users[i].point);
+          scoreSum += Number(this.users[i].point[index]);
         }
       }
-      const scoreAve = Math.floor(scoreSum/this.userCount);
+      const scoreAve = scoreSum/this.userCount;
       for (var i = 0; i < this.users.length; i++) {
-        this.users[i].score[index] = this.playedGames[index].rate * (this.users[i].point[index] - scoreAve);
-        // if(!this.users[i].score[index] || this.users[i].score[index] == 0){
-        //   this.users[i].score[index] = 0;
-        // }
-        // console.log(this.user[i].score[index]);
+        this.users[i].score[index] = Math.round(this.playedGames[index].rate * (this.users[i].point[index] - scoreAve));
+        if(isNaN(this.users[i].score[index])){
+          this.users[i].score[index] = '-';
+        }
       }
     },
+
     payOff: function(){
-      this.pageCount++;
+      if(confirm('精算してもよろしいですか？')){
+        this.pageCount++;
+        for (var i = 0; i < this.users.length; i++) {
+          let sum = this.users[i].score.reduce((a,x) => a+=x,0);
+          this.users[i].result = sum;
+        }
+      }
+    },
+
+    back: function(){
+      this.pageCount--;
     }
   }
 });

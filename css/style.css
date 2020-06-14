@@ -47,7 +47,7 @@ a, input, button, textarea, select, option {
   font-family: 'Noto Sans JP', sans-serif; }
 
 .header {
-  height: 60px;
+  height: 72px;
   width: 100%;
   padding: 0 30px;
   background: #444;
@@ -55,14 +55,22 @@ a, input, button, textarea, select, option {
   box-shadow: 0 0 8px 0 #bbb;
   position: fixed;
   top: 0;
-  z-index: 1; }
+  z-index: 1;
+  display: flex;
+  justify-content: space-between; }
   .header__title {
     font-size: 2.0rem;
-    line-height: 60px; }
+    line-height: 72px; }
+  .header__nav {
+    font-size: 1.6rem;
+    display: block;
+    height: 72px;
+    line-height: 72px;
+    color: #bbb; }
 
 .main {
-  margin-top: 60px;
-  height: calc(100vh - 60px);
+  margin-top: 72px;
+  height: calc(100vh - 72px);
   background: #eee;
   padding: 24px 0;
   font-size: 1.6rem; }
@@ -103,7 +111,7 @@ a, input, button, textarea, select, option {
       font-size: 1.6rem;
       line-height: 1; }
       .main__card button.disabled {
-        background: #c1c1c1;
+        background: #ddd;
         pointer-events: none; }
       .main__card button.clicked {
         pointer-events: none; }
@@ -137,63 +145,67 @@ a, input, button, textarea, select, option {
         background: #1e5ebd;
         color: #fcfcfc;
         border-color: #1e5ebd; }
-  .main .calc .title {
+  .main .calc .calc-card .title {
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid #888;
     margin-bottom: 14px; }
-    .main .calc .title h1 {
+    .main .calc .calc-card .title h1 {
       height: 30px;
-      font-size: 1.8rem;
+      font-size: 2rem;
       padding: 2px 10px 2px;
-      margin-bottom: 4px; }
-    .main .calc .title div {
-      display: flex; }
-      .main .calc .title div .game,
-      .main .calc .title div .rate,
-      .main .calc .title div .delete {
+      position: relative;
+      top: 2px; }
+    .main .calc .calc-card .title div {
+      display: flex;
+      margin-bottom: 2px; }
+      .main .calc .calc-card .title div .game,
+      .main .calc .calc-card .title div .rate,
+      .main .calc .calc-card .title div .delete {
         font-size: 1.2rem;
         display: block;
-        padding: 6px 10px;
+        padding: 0px 8px;
         margin: 2px 4px 6px;
         border-radius: 4px;
         color: #fcfcfc;
-        align-self: flex-end; }
-      .main .calc .title div .game {
-        background: #1e5ebd; }
-      .main .calc .title div .rate {
-        background: #bf4278; }
-      .main .calc .title div .delete {
-        background: #666; }
-  .main .calc .table {
+        align-self: flex-end;
+        height: 32px;
+        line-height: 30px; }
+      .main .calc .calc-card .title div .game {
+        background: #1e5ebd;
+        border: 1px solid #1e5ebd; }
+      .main .calc .calc-card .title div .rate {
+        background: #bf4278;
+        border: 1px solid #bf4278; }
+      .main .calc .calc-card .title div .delete {
+        border: 1px solid #888;
+        color: #888;
+        font-size: 1.4rem;
+        line-height: 28px; }
+  .main .calc .calc-card .table {
     font-size: 1.4rem;
     width: 100%;
     table-layout: fixed;
     border-color: #bbb; }
-    .main .calc .table tr th {
+    .main .calc .calc-card .table tr th {
       font-weight: bold;
       background: #bbb; }
-    .main .calc .table tr th,
-    .main .calc .table tr td {
+    .main .calc .calc-card .table tr th,
+    .main .calc .calc-card .table tr td {
       height: 40px;
       text-align: center;
       width: 33%; }
-      .main .calc .table tr th input,
-      .main .calc .table tr td input {
+      .main .calc .calc-card .table tr th input,
+      .main .calc .calc-card .table tr td input {
         width: 100%;
         height: 100%;
         text-align: center; }
-  .main .calc .newgame {
-    background: #1e5ebd;
-    font-size: 1.6rem; }
-    .main .calc .newgame.cancel {
-      background: #888; }
-  .main .new-game-maker ul {
+  .main .calc .new-game-maker ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px; }
-    .main .new-game-maker ul li {
+    .main .calc .new-game-maker ul li {
       text-align: center;
       margin: 6px;
       width: 80px;
@@ -205,17 +217,101 @@ a, input, button, textarea, select, option {
       border: 1px solid #666;
       font-size: 1.4rem;
       transition: .3s; }
-      .main .new-game-maker ul li.selected {
+      .main .calc .new-game-maker ul li.selected {
         background: #1e5ebd;
         color: #fcfcfc;
         border-color: #1e5ebd; }
-    .main .new-game-maker ul.maker-rate li:first-child,
-    .main .new-game-maker ul.maker-rate li:last-child {
-      background: #bbb; }
-    .main .new-game-maker ul.maker-rate input {
-      width: 100%;
-      height: 100%;
-      text-align: center; }
-  .main .newgame-button .newgame-make {
+    .main .calc .new-game-maker ul.maker-rate li:first-child,
+    .main .calc .new-game-maker ul.maker-rate li:last-child {
+      width: 40px;
+      font-size: 1.8rem; }
+    .main .calc .new-game-maker ul.maker-rate li:nth-child(2) {
+      width: 158px; }
+      .main .calc .new-game-maker ul.maker-rate li:nth-child(2) input {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 1.6rem;
+        line-height: 0.8; }
+  .main .calc .newgame-button .newgame-make {
     margin-bottom: 16px;
     background: #1e5ebd; }
+  .main .calc .newgame-button .newgame {
+    border: 1px solid #bbb;
+    background: #eee;
+    color: #888;
+    font-size: 2rem;
+    height: 212px;
+    transition: 0s; }
+    .main .calc .newgame-button .newgame.cancel {
+      background: #888;
+      color: #fcfcfc;
+      height: auto;
+      font-size: 1.6rem; }
+  .main .result .result-card .title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #888;
+    margin-bottom: 14px; }
+    .main .result .result-card .title h1 {
+      height: 30px;
+      font-size: 2rem;
+      padding: 2px 10px 2px;
+      position: relative;
+      top: 2px; }
+    .main .result .result-card .title div {
+      display: flex;
+      margin-bottom: 2px; }
+      .main .result .result-card .title div .game,
+      .main .result .result-card .title div .rate,
+      .main .result .result-card .title div .delete {
+        font-size: 1.2rem;
+        display: block;
+        padding: 0px 8px;
+        margin: 2px 4px 6px;
+        border-radius: 4px;
+        color: #fcfcfc;
+        align-self: flex-end;
+        height: 32px;
+        line-height: 30px; }
+      .main .result .result-card .title div .game {
+        background: #1e5ebd;
+        border: 1px solid #1e5ebd; }
+      .main .result .result-card .title div .rate {
+        background: #bf4278;
+        border: 1px solid #bf4278; }
+      .main .result .result-card .title div .delete {
+        border: 1px solid #888;
+        color: #888;
+        font-size: 1.4rem;
+        line-height: 28px; }
+  .main .result .result-card .table {
+    font-size: 1.4rem;
+    width: 100%;
+    table-layout: fixed;
+    border-color: #bbb; }
+    .main .result .result-card .table tr th {
+      font-weight: bold;
+      background: #bbb; }
+    .main .result .result-card .table tr th,
+    .main .result .result-card .table tr td {
+      height: 40px;
+      text-align: center;
+      width: 33%; }
+      .main .result .result-card .table tr th input,
+      .main .result .result-card .table tr td input {
+        width: 100%;
+        height: 100%;
+        text-align: center; }
+  .main .back p {
+    width: 80px;
+    height: 36px;
+    color: white;
+    line-height: 36px;
+    background: rgba(17, 17, 17, 0.7);
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    border-radius: 8px;
+    text-align: center;
+    transition: .5s; }

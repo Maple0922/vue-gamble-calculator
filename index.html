@@ -11,85 +11,92 @@
   <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-  <header class="header">
-    <h1 class="header__title">賭金計算ツール</h1>
-  </header>
-  <main class="main">
-    <div class="main__container select" v-if="pageCount==0">
-      <div class="main__card">
-        <h1>プレイヤーを選択してください</h1>
-        <span class="caption">プレイヤー : {{ userCount }}人</span>
-        <ul>
-          <li v-for="user in users" v-on:click="select" :key="user.name" :class="{ selected:user.selected }">
-            {{ user.name }}
-          </li>
-        </ul>
-        <button type="button" name="button" :class="{ disabled:userCount<2, clicked:pageCount>0 }" v-on:click="next">OK</button>
-      </div>
-    </div>
-    <div class="main__container calc" v-if="pageCount==1">
-      <div class="main__card calc-card" v-for="(game,index) in playedGames">
-        <div class="title">
-          <h1>Round {{ index + 1 }}</h1>
-          <div>
-            <span class="game">{{ game.name }}</span>
-            <span class="rate">{{ game.rate }}</span>
-            <span class="delete" v-on:click="deleteCalc">×</span>
+  <div id="app">
+    <header class="header">
+      <h1 class="header__title"> <a href="/">賭金計算ツール</a> </h1>
+      <span class="header__nav">{{ pageCount + 1 }} / 3</span>
+    </header>
+    <main class="main">
+      <section class="main__container select" v-if="pageCount==0">
+        <div class="main__card">
+          <h1>プレイヤーを選択してください</h1>
+          <span class="caption">プレイヤー : {{ userCount }}人</span>
+          <ul>
+            <li v-for="user in users" v-on:click="select" :key="user.name" :class="{ selected:user.selected }">
+              {{ user.name }}
+            </li>
+          </ul>
+          <button type="button" name="button" :class="{ disabled:userCount<2, clicked:pageCount>0 }" v-on:click="next">OK</button>
+        </div>
+      </section>
+      <section class="main__container calc" v-if="pageCount==1">
+        <div class="main__card calc-card" v-for="(game,index) in playedGames">
+          <div class="title">
+            <h1>Round {{ index + 1 }}</h1>
+            <div>
+              <span class="game">{{ game.name }}</span>
+              <span class="rate">{{ game.rate }}</span>
+              <span class="delete" v-on:click="deleteCalc">×</span>
+            </div>
           </div>
+          <table class="table" border='1'>
+            <tr>
+              <th class="player">Player</th>
+              <th class="point">Point</th>
+              <th class="reward">Reward</th>
+            </tr>
+            <tr v-if="user.selected" v-for="user in users" :key="user.name">
+              <td>{{ user.name }}</td>
+              <td><input type="text" name="" placeholder="0" v-model="user.point[index]" v-on:input="calcScore"></td>
+              <!-- <td>{{ user.score[index] }}</td> -->
+              <td>{{ user.score[index] }}</td>
+            </tr>
+          </table>
         </div>
-        <table class="table" border='1'>
-          <tr>
-            <th class="player">Player</th>
-            <th class="point">Point</th>
-            <th class="reward">Reward</th>
-          </tr>
-          <tr v-if="user.selected" v-for="user in users" :key="user.name">
-            <td>{{ user.name }}</td>
-            <td><input type="text" name="" placeholder="0" inputmode="numeric" pattern="\d" value="0" v-model="user.point[index]" v-on:input="calcScore"></td>
-            <td>{{ user.score[index] }}</td>
-          </tr>
-        </table>
-      </div>
-      <div class="main__card new-game-maker" v-if="newGameMaker">
-        <h1>ゲームを選択してください</h1>
-        <ul class="maker-game">
-          <li v-for="game in games" v-on:click="gameSelect" :key="game.name" :class="{ selected:game.selected }">
-            {{ game.name }}
-          </li>
-        </ul>
-        <h1>レートを選択してください</h1>
-        <ul class="maker-rate">
-          <li v-on:click="decreaseRate">-</li>
-          <li><input type="text" readonly name="" :value="rateDef"></li>
-          <li v-on:click="increaseRate">+</li>
-        </ul>
-      </div>
-      <div class="main__card newgame-button">
-        <button class="newgame-make" type="button" name="button" v-if="newGameMaker" v-on:click="newCalc">作成</button>
-        <button class="newgame" type="button" name="button" v-on:click="newGame" :class="{ cancel:newGameMaker }">{{ newButtonText }}</button>
-      </div>
-      <div class="main__card payoff-button">
-        <button type="button" name="button" :class="{ disabled:playedGames.length<1, clicked:pageCount!=1  }" v-on:click="payOff">精算</button>
-      </div>
-      <div class="main__card result" v-if="pageCount==2">
-        <div class="title">
-          <h1>Result</h1>
+        <div class="main__card new-game-maker" v-if="newGameMaker">
+          <h1>ゲームを選択してください</h1>
+          <ul class="maker-game">
+            <li v-for="game in games" v-on:click="gameSelect" :key="game.name" :class="{ selected:game.selected }">
+              {{ game.name }}
+            </li>
+          </ul>
+          <h1>レートを選択してください</h1>
+          <ul class="maker-rate">
+            <li v-on:click="decreaseRate">-</li>
+            <li><input type="text" readonly name="" :value="rateDef"></li>
+            <li v-on:click="increaseRate">+</li>
+          </ul>
         </div>
-        <table class="table" border='1'>
-          <tr>
-            <th class="player">Player</th>
-            <th class="point">Point</th>
-            <th class="reward">Reward</th>
-          </tr>
-          <tr v-if="user.selected" v-for="user in users" :key="user.name">
-            <td>{{ user.name }}</td>
-            <td><input type="text" name="" placeholder="0" inputmode="numeric" pattern="\d" value="0" v-model="user.point[index]" v-on:input="calcScore"></td>
-            <td>{{ user.score[index] }}</td>
-          </tr>
-        </table>
+        <div class="main__card newgame-button">
+          <button class="newgame-make" type="button" name="button" v-if="newGameMaker" v-on:click="newCalc">作成</button>
+          <button class="newgame" type="button" name="button" v-on:click="newGame" :class="{ cancel:newGameMaker }">{{ newButtonText }}</button>
+        </div>
+        <div class="main__card payoff-button">
+          <button type="button" name="button" :class="{ disabled:playedGames.length<1, clicked:pageCount!=1  }" v-on:click="payOff">精算</button>
+        </div>
+      </section>
+      <section class="main__container result" v-if="pageCount==2">
+        <div class="main__card result-card">
+          <div class="title">
+            <h1>Result</h1>
+          </div>
+          <table class="table" border='1'>
+            <tr>
+              <th class="player">Player</th>
+              <th class="reward">Reward</th>
+            </tr>
+            <tr v-if="user.selected" v-for="user in users" :key="user.name">
+              <td>{{ user.name }}</td>
+              <td>{{ user.result }}</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+      <div class="back">
+        <p v-on:click="back" v-if="pageCount>0">← Back</p>
       </div>
-    </div>
-</main>
-<script type="text/javascript" src="js/script.js"></script>
+    </main>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

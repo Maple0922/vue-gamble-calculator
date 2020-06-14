@@ -76,7 +76,7 @@ $breakpoints: (
   font-size: 1.6rem;
   line-height: 1;
   &.disabled {
-    background: rgb(193, 193, 193);
+    background: $color-disabled;
     pointer-events: none;
   }
   &.clicked {

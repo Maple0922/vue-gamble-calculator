@@ -12,9 +12,18 @@
   position: fixed;
   top: 0;
   z-index: 1;
+  display: flex;
+  justify-content: space-between;
   &__title {
     font-size: 2.0rem;
     line-height: $height-header;
+  }
+  &__nav {
+    font-size: 1.6rem;
+    display: block;
+    height: $height-header;
+    line-height: $height-header;
+    color: $light-gray;
   }
 }
 
@@ -57,113 +66,224 @@
     }
   }
   .calc {
-    .title {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 2px solid $gray;
-      margin-bottom: 14px;
-      h1 {
-        height: 30px;
-        font-size: 1.8rem;
-        padding: 2px 10px 2px;
-        margin-bottom: 4px;
-      }
-      div {
+    .calc-card {
+      .title {
         display: flex;
-        .game,
-        .rate,
-        .delete {
-          font-size: 1.2rem;
-          display: block;
-          padding: 6px 10px;
-          margin: 2px 4px 6px;
-          border-radius: 4px;
-          color: $white;
-          align-self: flex-end;
+        justify-content: space-between;
+        border-bottom: 2px solid $gray;
+        margin-bottom: 14px;
+        h1 {
+          height: 30px;
+          font-size: 2rem;
+          padding: 2px 10px 2px;
+          position: relative;
+          top: 2px;
         }
-        .game {
-          background: $color-blue;
-        }
-        .rate {
-          background: $color-pink;
-        }
-        .delete {
-          background: $dark-gray;
+        div {
+          display: flex;
+          margin-bottom: 2px;
+          .game,
+          .rate,
+          .delete {
+            font-size: 1.2rem;
+            display: block;
+            padding: 0px 8px;
+            margin: 2px 4px 6px;
+            border-radius: 4px;
+            color: $white;
+            align-self: flex-end;
+            height: 32px;
+            line-height: 30px;
+          }
+          .game {
+            background: $color-blue;
+            border: 1px solid $color-blue;
+          }
+          .rate {
+            background: $color-pink;
+            border: 1px solid $color-pink;
+          }
+          .delete {
+            border: 1px solid $gray;
+            color: $gray;
+            font-size: 1.4rem;
+            line-height: 28px;
+          }
         }
       }
-    }
-    .table {
-      font-size: 1.4rem;
-      width: 100%;
-      table-layout: fixed;
-      border-color: $light-gray;
-      tr {
-        th {
-          font-weight: bold;
-          background: $light-gray;
-        }
-        th,
-        td {
-          height: 40px;
-          text-align: center;
-          width: 33%;
-          input {
-            width: 100%;
-            height: 100%;
+      .table {
+        font-size: 1.4rem;
+        width: 100%;
+        table-layout: fixed;
+        border-color: $light-gray;
+        tr {
+          th {
+            font-weight: bold;
+            background: $light-gray;
+          }
+          th,
+          td {
+            height: 40px;
             text-align: center;
+            width: 33%;
+            input {
+              width: 100%;
+              height: 100%;
+              text-align: center;
+            }
           }
         }
       }
     }
-    .newgame {
-      background: $color-blue;
-      font-size: 1.6rem;
-      &.cancel {
-        background: $gray;
-      }
-    }
-  }
-  .new-game-maker {
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 20px;
-      li {
-        text-align: center;
-        margin: 6px;
-        width: 80px;
-        height: 40px;
-        line-height: 37px;
-        background: $white;
-        border-radius: 8px;
-        color: $super-dark-gray;
-        border: 1px solid $dark-gray;
-        font-size: 1.4rem;
-        transition: .3s;
-        &.selected {
-          background: $color-blue;
-          color: $white;
-          border-color: $color-blue;
-        }
-      }
-      &.maker-rate {
-        li:first-child,
-        li:last-child {
-          background: $light-gray;
-        }
-        input {
-          width: 100%;
-          height: 100%;
+
+    .new-game-maker {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+        li {
           text-align: center;
+          margin: 6px;
+          width: 80px;
+          height: 40px;
+          line-height: 37px;
+          background: $white;
+          border-radius: 8px;
+          color: $super-dark-gray;
+          border: 1px solid $dark-gray;
+          font-size: 1.4rem;
+          transition: .3s;
+          &.selected {
+            background: $color-blue;
+            color: $white;
+            border-color: $color-blue;
+          }
+        }
+        &.maker-rate {
+          li:first-child,
+          li:last-child {
+            width: 40px;
+            font-size: 1.8rem;
+          }
+          li:nth-child(2){
+            width: 158px;
+            input {
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              font-size: 1.6rem;
+              line-height: 0.8;
+            }
+          }
+        }
+      }
+    }
+    .newgame-button {
+      .newgame-make {
+        margin-bottom: 16px;
+        background: $color-blue;
+      }
+      .newgame {
+        border: 1px solid $light-gray;
+        background: $super-light-gray;
+        color: $gray;
+        font-size: 2rem;
+        height: 212px;
+        transition: 0s;
+        &.cancel {
+          background: $gray;
+          color: $white;
+          height: auto;
+          font-size: 1.6rem;
         }
       }
     }
   }
-  .newgame-button {
-    .newgame-make {
-      margin-bottom: 16px;
-      background: $color-blue;
+  .result {
+    .result-card {
+      .title {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid $gray;
+        margin-bottom: 14px;
+        h1 {
+          height: 30px;
+          font-size: 2rem;
+          padding: 2px 10px 2px;
+          position: relative;
+          top: 2px;
+        }
+        div {
+          display: flex;
+          margin-bottom: 2px;
+          .game,
+          .rate,
+          .delete {
+            font-size: 1.2rem;
+            display: block;
+            padding: 0px 8px;
+            margin: 2px 4px 6px;
+            border-radius: 4px;
+            color: $white;
+            align-self: flex-end;
+            height: 32px;
+            line-height: 30px;
+          }
+          .game {
+            background: $color-blue;
+            border: 1px solid $color-blue;
+          }
+          .rate {
+            background: $color-pink;
+            border: 1px solid $color-pink;
+          }
+          .delete {
+            border: 1px solid $gray;
+            color: $gray;
+            font-size: 1.4rem;
+            line-height: 28px;
+          }
+        }
+      }
+      .table {
+        font-size: 1.4rem;
+        width: 100%;
+        table-layout: fixed;
+        border-color: $light-gray;
+        tr {
+          th {
+            font-weight: bold;
+            background: $light-gray;
+          }
+          th,
+          td {
+            height: 40px;
+            text-align: center;
+            width: 33%;
+            input {
+              width: 100%;
+              height: 100%;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+  .back {
+    p {
+      width: 80px;
+      height: 36px;
+      color: white;
+      line-height: 36px;
+      background: transparentize($black, 0.3);
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      border-radius: 8px;
+      text-align: center;
+      transition: .5s;
     }
   }
 }
