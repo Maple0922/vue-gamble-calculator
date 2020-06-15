@@ -2,6 +2,12 @@
 * {
   box-sizing: border-box; }
 
+a, area, button, [role="button"], input:not([type=range]),
+label, select, summary, textarea {
+  -ms-touch-action: manipulation;
+  -webkit-touch-action: manipulation;
+  touch-action: manipulation; }
+
 html {
   color: #444;
   background: #eee;
