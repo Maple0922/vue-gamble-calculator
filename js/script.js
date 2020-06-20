@@ -18,7 +18,7 @@ var app = new Vue({
     userCount: 0,
     pageCount: 0,
     newGameMaker: false,
-    newButtonText: '＋',
+    newButtonText: 'ラウンドを追加',
     playedGames: []
   },
   methods: {
@@ -41,7 +41,7 @@ var app = new Vue({
     },
 
     newGame: function(){
-      this.newButtonText = this.newGameMaker ? '＋' : 'キャンセル';
+      this.newButtonText = this.newGameMaker ? 'ラウンドを追加' : 'キャンセル';
       this.newGameMaker = !this.newGameMaker;
     },
 
@@ -53,7 +53,7 @@ var app = new Vue({
         }
       );
       this.newGameMaker = false;
-      this.newButtonText = '＋';
+      this.newButtonText = 'ラウンドを追加';
       for (var i = 0; i < this.users.length; i++) {
         this.users[i].score.push(0);
       }

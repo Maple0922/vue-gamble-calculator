@@ -51,26 +51,28 @@
             </tr>
           </table>
         </div>
-        <div class="main__card new-game-maker" v-if="newGameMaker">
-          <h1>ゲームを選択してください</h1>
-          <ul class="maker-game">
-            <li v-for="game in games" v-on:click="gameSelect" :key="game.name" :class="{ selected:game.selected }">
-              {{ game.name }}
-            </li>
-          </ul>
-          <h1>レートを選択してください</h1>
-          <ul class="maker-rate">
-            <li v-on:click="decreaseRate">-</li>
-            <li><input type="text" readonly name="" :value="rateDef"></li>
-            <li v-on:click="increaseRate">+</li>
-          </ul>
-        </div>
-        <div class="main__card newgame-button">
-          <button class="newgame-make" type="button" name="button" v-if="newGameMaker" v-on:click="newCalc">作成</button>
-          <button class="newgame" type="button" name="button" v-on:click="newGame" :class="{ cancel:newGameMaker }">{{ newButtonText }}</button>
+        <div class="main__card new-game-maker">
+          <div class="new-game-select" v-if="newGameMaker">
+            <h1>ゲームを選択してください</h1>
+            <ul class="maker-game">
+              <li v-for="game in games" v-on:click="gameSelect" :key="game.name" :class="{ selected:game.selected }">
+                {{ game.name }}
+              </li>
+            </ul>
+            <h1>レートを選択してください</h1>
+            <ul class="maker-rate">
+              <li v-on:click="decreaseRate">-</li>
+              <li><input type="text" readonly name="" :value="rateDef"></li>
+              <li v-on:click="increaseRate">+</li>
+            </ul>
+          </div>
+          <div class="new-game-button">
+            <button class="newgame-make" type="button" name="button" v-if="newGameMaker" v-on:click="newCalc">作成</button>
+            <button class="newgame" type="button" name="button" v-on:click="newGame" :class="{ cancel:newGameMaker }">{{ newButtonText }}</button>
+          </div>
         </div>
         <div class="main__card payoff-button">
-          <button type="button" name="button" :class="{ disabled:playedGames.length<1, clicked:pageCount!=1  }" v-on:click="payOff">精算</button>
+          <button type="button" name="button" :class="{ disabled:playedGames.length<1 || newGameMaker, clicked:pageCount!=1  }" v-on:click="payOff">精算</button>
         </div>
       </section>
       <section class="main__container result" v-if="pageCount==2">
