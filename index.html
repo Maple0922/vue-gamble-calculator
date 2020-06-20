@@ -47,7 +47,6 @@
             <tr v-if="user.selected" v-for="user in users" :key="user.name">
               <td>{{ user.name }}</td>
               <td><input type="text" name="" placeholder="0" v-model="user.point[index]" v-on:input="calcScore"></td>
-              <!-- <td>{{ user.score[index] }}</td> -->
               <td>{{ user.score[index] }}</td>
             </tr>
           </table>
